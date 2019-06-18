@@ -1,6 +1,6 @@
 # mangaChapterUpdates
 Python program that looks for mangareader.net One Piece manga chapter updates. 
-To make this run automaticly follow the guide(s) below (not me)
+To make this run automatically follow the guide(s) below (not me)
 
 for running the .py file on a schedule:
   https://www.youtube.com/watch?v=n2Cr_YRQk7o
