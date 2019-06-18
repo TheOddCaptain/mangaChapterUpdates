@@ -1,0 +1,50 @@
+import requests
+import datetime
+from bs4 import BeautifulSoup
+from win10toast import ToastNotifier
+
+#############################################
+### Finding the newest manga chapter date ###
+#############################################
+#requesting the html site as text
+source = requests.get("https://www.mangareader.net/one-piece").text
+
+soup = BeautifulSoup(source, "lxml")
+#SCRAPING
+parent_tag = soup.find("table", id="listing")
+
+child_tags = parent_tag.findAll("td")
+
+#getting the last index/update of the list and converting it to string
+latest_chapter_date = ''.join(child_tags[-1])
+
+############################
+### Newest manga chapter ###
+############################
+
+latest_chapters = soup.find("div", id="latestchapters")
+
+list_chapter = latest_chapters.ul.li
+
+chapter = list_chapter.find("a")["href"]
+
+###################################
+### Setup for the notifications ###
+###################################
+
+date = datetime.date.today()
+
+today = date.strftime("%m/%d/%Y")
+
+toaster = ToastNotifier()
+
+#For adding a icon to your notification add a path to a .ico file as string
+jolly_roger = None
+
+if latest_chapter_date == today:
+    toaster.show_toast("One Piece",f"New chapter available!\nwww.mangareader.net{chapter} \nRelease date: {latest_chapter_date}",icon_path=jolly_roger)
+else:
+    pass    
+#Uncomment the line below and remove the line above if you want a notification even if there is no new chapter 
+    #toaster.show_toast("One Piece","New chapter has not been released today",icon_path=jolly_roger)
+    
