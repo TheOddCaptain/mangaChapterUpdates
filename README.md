@@ -1,5 +1,5 @@
 # mangaChapterUpdates
-Python program that looks for mangareader.net One Piece manga chapter updates. 
+Python program that looks for mangareader.net One Piece manga chapter updates and then sends a notification to windows notification center. 
 To make this run automatically follow the guide(s) below (not me)
 
 for running the .py file on a schedule:
